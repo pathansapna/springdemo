@@ -1,0 +1,78 @@
+server:
+  port: 8080
+
+  spring:
+    profiles:
+      active: dev
+
+
+---
+
+  spring:
+    profiles: dev
+    datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: crudapp
+    password: PASSWORD
+    url: jdbc:mysql://localhost:3306/crudapp
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL55Dialect
+    show-sql: true
+  welcome:
+    message: Welcome to New Spring Boot
+
+---
+
+  spring:
+    profiles:
+      active: qa
+
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      name: crudapp
+      password: PASSWORD
+      url: jdbc:mysql://localhost:3306/crudapp-qa
+      username: root
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL55Dialect
+      show-sql: true
+  welcome:
+    message: Welcome to New Spring Boot
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+          exclude: "env,beans"
+
+
+---
+
+    spring:
+      profiles: prod
+
+      datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        name: crudapp
+        password: PASSWORD
+        url: jdbc:mysql://localhost:3306/crudapp-prod
+        username: root
+      jpa:
+        hibernate:
+          ddl-auto: update
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.MySQL55Dialect
+        show-sql: true
+    welcome:
+      message: Welcome to New Spring Boot
